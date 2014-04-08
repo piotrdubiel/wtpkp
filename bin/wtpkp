@@ -1,0 +1,31 @@
+#!/usr/bin/env ruby
+
+lib = File.expand_path(File.dirname(__FILE__) + '/../lib')
+$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+
+#require "terminal-notifier"
+require "wtpkp"
+
+config_path = File.expand_path("~/.wtpkp.yml")
+if File.exists? config_path
+  queries = WTPKP::Config.from_yaml(config_path).map do |c|
+    WTPKP::Query.new(**c)
+  end
+else 
+  queries = [WTPKP::Query.new("wawa wola grzyb", "wawa śródm pkp")]
+end
+
+courses = []
+queries.each do |q|
+  courses << q.fetch
+end
+
+printf("%s\n", '_' * (1+ (3+10)*4))
+printf("| %-10s | %-10s | %-10s | %-10s |\n", "From", "To", "Departure", "Arrival")
+printf("%s\n", '-' * (1+ (3+10)*4))
+courses.each do |c|
+  c.each do |d|
+    printf("| %-10s | %-10s | %-10s | %-10s |\n", d.origin, d.destination, d.departure, d.arrival)
+  end
+  printf("%s\n", '-' * (1+ (3+10)*4))
+end
