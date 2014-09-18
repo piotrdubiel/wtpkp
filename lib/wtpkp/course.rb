@@ -23,13 +23,13 @@ module WTPKP
       [@origin, @destination, @departure, @arrival]
     end
 
-    def to_json
+    def to_json(*args)
       {
-        origin: @origin
-        destination: @destination
-        departure: @departure.to_i
-        arrival: @arrival.to_i
-      }.to_json
+        origin: @origin,
+        destination: @destination,
+        departure: @departure,
+        arrival: @arrival
+      }.to_json(args)
     end
   end
 end
