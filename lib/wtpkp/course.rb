@@ -1,6 +1,7 @@
 
 module WTPKP
   class Course
+    include Comparable
     attr_reader :origin
     attr_reader :destination
     attr_reader :departure
@@ -11,6 +12,14 @@ module WTPKP
       @destination = destination
       @departure = departure
       @arrival = arrival
+    end
+
+    def <=> other
+      @departure <=> other.departure
+    end
+
+    def to_a
+      [@origin, @destination, @departure, @arrival]
     end
   end
 end

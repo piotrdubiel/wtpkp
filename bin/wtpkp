@@ -1,5 +1,7 @@
 #!/usr/bin/env ruby
 
+require 'terminal-table'
+
 lib = File.expand_path(File.dirname(__FILE__) + '/../lib')
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
@@ -20,12 +22,5 @@ queries.each do |q|
   courses << q.fetch
 end
 
-printf("%s\n", '_' * (1+ (3+10)*4))
-printf("| %-10s | %-10s | %-10s | %-10s |\n", "From", "To", "Departure", "Arrival")
-printf("%s\n", '-' * (1+ (3+10)*4))
-courses.each do |c|
-  c.each do |d|
-    printf("| %-10s | %-10s | %-10s | %-10s |\n", d.origin, d.destination, d.departure, d.arrival)
-  end
-  printf("%s\n", '-' * (1+ (3+10)*4))
-end
+tables  = courses.map { |c| Terminal::Table.new headings: ["From", "To", "Departure", "Arrival"], rows: c.map { |b| b.to_a } }
+tables.each { |t| puts t }

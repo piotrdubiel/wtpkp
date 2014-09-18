@@ -19,12 +19,12 @@ module WTPKP
           form.field_with(id: "time").value = @time.strftime("%H:%M")
         end
         departures_page = form.submit(form.button_with(name: 'start'))
-        departures = departures_page.search('.tpOverview > :nth-child(5)').map do |departure|
+        departures = departures_page.search('.tpOverview > :nth-child(5), .selected > :nth-child(5)').map do |departure|
           departure.children.map(&:to_s).select { |t| t =~ /\d\d:\d\d/ }
         end.map do |record|
           Course.new origin: @origin, destination: @destination, departure: record[0], arrival: record[1]
         end
-        return departures
+        return departures.sort
       end
     end
   end
