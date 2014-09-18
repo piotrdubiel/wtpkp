@@ -7,7 +7,7 @@ module WTPKP
       @origin = origin
       @destination = destination
       @mechanize = Mechanize.new
-      @time = time
+      @time = time or Time.now
     end
 
     def fetch
