@@ -1,3 +1,4 @@
+require "json"
 
 module WTPKP
   class Course
@@ -20,6 +21,15 @@ module WTPKP
 
     def to_a
       [@origin, @destination, @departure, @arrival]
+    end
+
+    def to_json
+      {
+        origin: @origin
+        destination: @destination
+        departure: @departure.to_i
+        arrival: @arrival.to_i
+      }.to_json
     end
   end
 end
