@@ -3,11 +3,11 @@ require "wtpkp/course"
 
 module WTPKP
   class Query
-    def initialize(origin:, destination:, time: Time.now)
+    def initialize(origin:, destination:, time: Time.now.utc)
       @origin = origin
       @destination = destination
       @mechanize = Mechanize.new
-      @time = time || Time.now
+      @time = TIMEZONE.utc_to_local(time || Time.now.utc)
     end
 
     def fetch

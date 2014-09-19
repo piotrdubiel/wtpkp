@@ -23,6 +23,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "terminal-table", "~> 1.4.5"
   spec.add_dependency "mechanize", "~> 2.7.3"
   spec.add_dependency "docopt", "~> 0.5.0"
+  spec.add_dependency "tzinfo", "~> 1.2.2"
 
   spec.add_development_dependency "bundler", "~> 1.3"
   spec.add_development_dependency "rake"
