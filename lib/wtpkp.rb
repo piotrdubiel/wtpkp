@@ -5,6 +5,6 @@ require "wtpkp/course"
 require "tzinfo"
 
 module WTPKP
-  URL = "http://rozklad-pkp.pl/bin/query.exe/pn?"
+  URL = "http://old.rozklad-pkp.pl/bin/query.exe/pn?"
   TIMEZONE = TZInfo::Timezone.get('Europe/Warsaw')
 end
